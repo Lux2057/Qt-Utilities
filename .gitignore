@@ -1,0 +1,14 @@
+.vs/
+debug/
+release/
+profile/
+
+*.vsidx
+*.user
+*.filters
+*.vcxproj
+
+*.stash
+*.sln
+*.dsnp
+*.user
