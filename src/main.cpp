@@ -1,7 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QSharedPointer>
-#include "QThreadRunner.h"
+#include "QTaskRunner.h"
 
 
 int main(int argc, char* argv[]) {
