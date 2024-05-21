@@ -1,9 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "QRecurrentTaskRunner.h"
 
 #include "Samples/QRecurrentCounter.h"
-
 
 int main(int argc, char* argv[]) {
 	QGuiApplication app(argc, argv);

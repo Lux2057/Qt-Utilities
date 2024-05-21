@@ -12,7 +12,7 @@ bool QLoopTaskRunner::isRunning() const {
 
 void QLoopTaskRunner::run() {
 	if (_isRunning)
-		throw std::exception(THREAD_IS_ALREADY_RUNNING);
+        throw std::runtime_error(THREAD_IS_ALREADY_RUNNING);
 
 	QtConcurrent::run([this] {
 		_isRunning = true;
