@@ -9,5 +9,6 @@ SOURCES += main.cpp \
 RESOURCES += qml.qrc \    
 
 include(Utilities/Utilities.pri)
+include(Samples/Samples.pri)
 
 !isEmpty(target.path): INSTALLS += target

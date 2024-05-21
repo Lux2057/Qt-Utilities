@@ -4,9 +4,7 @@ INCLUDEPATH += \
 LIBS +=
 
 HEADERS += \
-    $$PWD/QTaskRunner.h
-
-
+    $$PWD/QLoopTaskRunner.h
 
 SOURCES += \
-    $$PWD/QTaskRunner.cpp
+    $$PWD/QLoopTaskRunner.cpp

@@ -1,19 +1,22 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QSharedPointer>
-#include "QTaskRunner.h"
+#include "QRecurrentTaskRunner.h"
+
+#include "Samples/QRecurrentCounter.h"
 
 
 int main(int argc, char* argv[]) {
-    QGuiApplication app(argc, argv);    
+	QGuiApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
+	qmlRegisterType<QRecurrentCounter>("CppControls", 1, 0, "RecurrentCounter");
 
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
+	QQmlApplicationEngine engine;
 
-    const int ret = app.exec();
+	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+	if (engine.rootObjects().isEmpty())
+		return -1;
 
-    return ret;
+	const int ret = app.exec();
+
+	return ret;
 }
