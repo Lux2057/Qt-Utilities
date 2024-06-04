@@ -30,45 +30,103 @@ Window {
         }
 
         Row {
-            id: counterDisplay
+            id: counter1Row
 
-            spacing: 3
+            spacing: 5
 
-            Text {
-                id: counterLabel
+            Row {
+                id: counter1Display
 
-                text: "Counter:"
+                anchors.verticalCenter: parent.verticalCenter
+
+                spacing: 3
+
+                Text {
+                    id: counter1Label
+
+                    text: "Counter1:"
+                }
+
+                Text {
+                    id: counter1
+
+                    text: recurrentCounter.counter1
+                }
             }
 
-            Text {
-                id: counter
+            Button {
+                id: start1Button
 
-                text: recurrentCounter.counter
+                height: 30
+
+                text: "Start"
+
+                visible: !recurrentCounter.isRunning1
+
+                onClicked: recurrentCounter.start1()
+            }
+
+            Button {
+                id: stop1Button
+
+                height: 30
+
+                text: "Stop"
+
+                visible: recurrentCounter.isRunning1
+
+                onClicked: recurrentCounter.stop1()
             }
         }
 
-        Button {
-            id: startButton
+        Row {
+            id: counter2Row
 
-            height: 30
+            spacing: 5
 
-            text: "Start"
+            Row {
+                id: counter2Display
 
-            visible: !recurrentCounter.isRunning
+                anchors.verticalCenter: parent.verticalCenter
 
-            onClicked: recurrentCounter.start()
-        }
+                spacing: 3
 
-        Button {
-            id: stopButton
+                Text {
+                    id: counter2Label
 
-            height: 30
+                    text: "Counter2:"
+                }
 
-            text: "Stop"
+                Text {
+                    id: counter2
 
-            visible: recurrentCounter.isRunning
+                    text: recurrentCounter.counter2
+                }
+            }
 
-            onClicked: recurrentCounter.stop()
+            Button {
+                id: start2Button
+
+                height: 30
+
+                text: "Start"
+
+                visible: !recurrentCounter.isRunning2
+
+                onClicked: recurrentCounter.start2()
+            }
+
+            Button {
+                id: stop2Button
+
+                height: 30
+
+                text: "Stop"
+
+                visible: recurrentCounter.isRunning2
+
+                onClicked: recurrentCounter.stop2()
+            }
         }
     }
 }

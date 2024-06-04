@@ -9,9 +9,11 @@ class QRecurrentCounter : public QObject
 {
 	Q_OBJECT
 
-	Q_PROPERTY(qint32 counter READ counter NOTIFY counterChanged)
+    Q_PROPERTY(qint32 counter1 READ counter1 NOTIFY counter1Changed)
+    Q_PROPERTY(bool isRunning1 READ isRunning1 NOTIFY isRunning1Changed)
 
-	Q_PROPERTY(bool isRunning READ isRunning NOTIFY isRunningChanged)
+    Q_PROPERTY(qint32 counter2 READ counter2 NOTIFY counter2Changed)
+    Q_PROPERTY(bool isRunning2 READ isRunning2 NOTIFY isRunning2Changed)
 
 public:
 	explicit QRecurrentCounter(QObject* parent = nullptr);
@@ -22,27 +24,32 @@ public:
 	QRecurrentCounter& operator=(const QRecurrentCounter& other) = delete;
 	QRecurrentCounter& operator=(QRecurrentCounter&& other) noexcept = delete;
 
-	qint32 counter() const;	
+    qint32 counter1() const;
+    bool isRunning1() const;
 
-	bool isRunning() const;
+    qint32 counter2() const;
+    bool isRunning2() const;
 
 public slots:
-	void start() const;
-	void stop();
+    void start1() const;
+    void stop1();
+
+    void start2() const;
+    void stop2();
 
 signals:
-	void counterChanged();
-	void isRunningChanged();
+    void counter1Changed();
+    void isRunning1Changed();
+
+    void counter2Changed();
+    void isRunning2Changed();
 
 private:
-	qint32 _counter{ 0 };
+    qint32 _counter1{ 0 };
+    QLoopTaskRunner* _recurrentTR1{ nullptr };
 
-	QLoopTaskRunner* _recurrentTaskRunner{ nullptr };
-
-	std::function<void(QRecurrentCounter*)> _increment;
-
-private slots:
-	void _emitIsRunningChanged();
+    qint32 _counter2{ 0 };
+    QLoopTaskRunner* _recurrentTR2{ nullptr };
 };
 
 #endif // QRECURRENTCOUNTER_H
