@@ -14,6 +14,8 @@ void QLoopTaskRunner::run() {
 	if (_isRunning)
         throw std::runtime_error(THREAD_IS_ALREADY_RUNNING);
 
+	_isStopRequested = false;
+
 	QtConcurrent::run([this] {
 		_isRunning = true;
 		emit isRunningChanged();

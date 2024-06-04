@@ -3,7 +3,7 @@ INCLUDEPATH += \
 
 LIBS +=
 
-HEADERS += \     \
+HEADERS += \
     $$PWD/QRecurrentCounter.h \
 
 SOURCES += \

@@ -24,6 +24,9 @@ QRecurrentCounter::QRecurrentCounter(QObject* parent) : QObject(parent) {
 
         QThread::msleep(THREAD_DELAY_IN_MS);
     });
+
+    connect(_recurrentTR1, &QLoopTaskRunner::isRunningChanged, this, &QRecurrentCounter::isRunning1Changed);
+    connect(_recurrentTR2, &QLoopTaskRunner::isRunningChanged, this, &QRecurrentCounter::isRunning2Changed);
 }
 
 QRecurrentCounter::~QRecurrentCounter() {
@@ -45,10 +48,10 @@ void QRecurrentCounter::start1() const {
 }
 
 void QRecurrentCounter::stop1() {
-    _recurrentTR1->awaitStop();
-    emit isRunning1Changed();
+    _recurrentTR1->awaitStop();    
 
 	_counter1 = 0;
+
     emit counter1Changed();
 }
 
@@ -66,9 +69,19 @@ void QRecurrentCounter::start2() const {
 }
 
 void QRecurrentCounter::stop2() {
-    _recurrentTR2->awaitStop();
-    emit isRunning2Changed();
+    _recurrentTR2->awaitStop();    
 
     _counter2 = 0;
+
     emit counter2Changed();
+}
+
+void QRecurrentCounter::requestStop() {
+    _recurrentTR1->requestStop();
+    _recurrentTR2->requestStop();
+
+    QThread::msleep(10);
+
+    emit isRunning1Changed();
+    emit isRunning2Changed();
 }

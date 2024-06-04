@@ -128,5 +128,15 @@ Window {
                 onClicked: recurrentCounter.stop2()
             }
         }
+
+        Button {
+            id: requestStop
+
+            height: 30
+
+            text: "Request stop"
+
+            onClicked: recurrentCounter.requestStop()
+        }
     }
 }

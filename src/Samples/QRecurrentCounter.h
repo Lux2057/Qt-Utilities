@@ -1,6 +1,8 @@
 #ifndef QRECURRENTCOUNTER_H
 #define QRECURRENTCOUNTER_H
 
+#include <QThread>
+
 #include "Utilities/QLoopTaskRunner.h"
 
 #define THREAD_DELAY_IN_MS 10
@@ -36,6 +38,8 @@ public slots:
 
     void start2() const;
     void stop2();
+
+    void requestStop();
 
 signals:
     void counter1Changed();
