@@ -22,7 +22,8 @@ public:
 	bool isRunning() const;
 
 	void run();
-	void stop();
+    void awaitStop();
+    void requestStop();
 
 signals:
 	void isRunningChanged();

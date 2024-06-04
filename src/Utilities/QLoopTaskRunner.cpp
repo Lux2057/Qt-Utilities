@@ -3,7 +3,7 @@
 QLoopTaskRunner::QLoopTaskRunner(std::function<void()> task, QObject* parent) : QObject(parent), _task(std::move(task)) {}
 
 QLoopTaskRunner::~QLoopTaskRunner() {
-	stop();
+    awaitStop();
 }
 
 bool QLoopTaskRunner::isRunning() const {
@@ -26,7 +26,7 @@ void QLoopTaskRunner::run() {
 	});
 }
 
-void QLoopTaskRunner::stop() {
+void QLoopTaskRunner::awaitStop() {
 	if (!_isRunning)
 		return;
 
@@ -35,5 +35,9 @@ void QLoopTaskRunner::stop() {
 	while (_isRunning)
 		QThread::msleep(1);
 
-	_isStopRequested = false;
+    _isStopRequested = false;
+}
+
+void QLoopTaskRunner::requestStop() {
+    _isStopRequested = true;
 }
